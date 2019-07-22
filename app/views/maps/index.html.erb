@@ -21,10 +21,11 @@
     var map = new google.maps.Map(
       //centers the map on the first location in the array locations
       document.getElementById('map'), {zoom: 12, center: {lat: locations[0][0], lng: locations[0][1]}});
-    console.log(locations);
-    //places markers for each location in locations
-    for (var i = 0; i < locations.length; i++) {
-      var marker = new google.maps.Marker({position: {lat: locations[i][0], lng: locations[i][1]}, map: map});
+    //pass each location into addMarker one at a time with a map parameter
+    locations.forEach(loc => addMarker(map, loc))
+    //add each lat,lng to the specified map
+    function addMarker(map, loc) {
+       var marker = new google.maps.Marker({position: {lat: loc[0], lng: loc[1]}, map: map});
     };
   };
   
